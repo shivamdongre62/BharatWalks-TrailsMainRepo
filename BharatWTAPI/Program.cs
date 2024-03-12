@@ -1,4 +1,7 @@
 
+using BharatWTAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace BharatWTAPI
 {
     public class Program
@@ -13,6 +16,9 @@ namespace BharatWTAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
             var app = builder.Build();
 
