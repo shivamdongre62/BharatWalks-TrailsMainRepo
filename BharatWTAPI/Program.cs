@@ -1,5 +1,6 @@
 
 using BharatWTAPI.Data;
+using BharatWTAPI.Mappings;
 using BharatWTAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +20,8 @@ namespace BharatWTAPI
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            builder.Services.AddScoped<IRegionRepository , SQLRegionRepository>();
+            builder.Services.AddScoped<IRegionRepository , InMemoryRegionRepository>();
+            builder.Services.AddAutoMapper(typeof(AutomapperProfiles));
 
             var app = builder.Build();
 
