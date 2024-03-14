@@ -1,4 +1,6 @@
-﻿using BharatWTAPI.Data;
+﻿using AutoMapper;
+using BharatWTAPI.Data;
+using BharatWTAPI.Models.Domain;
 using BharatWTAPI.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +15,11 @@ namespace BharatWTAPI.Controllers
     {
         //private readonly ApplicationDbContext _context;
         private readonly IRegionRepository _regionRepository;
-        public RegionsController(IRegionRepository regionRepository)
+        private readonly IMapper mapper;
+        public RegionsController(IRegionRepository regionRepository,IMapper mapper)
         {
-            this._regionRepository = regionRepository; 
+            this._regionRepository = regionRepository;
+            this.mapper = mapper;
         }
 
 
@@ -23,7 +27,10 @@ namespace BharatWTAPI.Controllers
         public async Task<IActionResult> GetAll()
         {
             var regions = await _regionRepository.GetAll();
-            return Ok(regions); 
+
+            var regionsDto = mapper.Map<List<RegionDto>>(regions);
+            
+            return Ok(regionsDto); 
         }
 
         //[HttpGet]
