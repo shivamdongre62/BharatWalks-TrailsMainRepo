@@ -35,6 +35,23 @@ namespace BharatWTAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Difficulties");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6486372a-b47d-4f04-953d-90adccfea649"),
+                            Name = "Easy"
+                        },
+                        new
+                        {
+                            Id = new Guid("66c4daff-526e-476d-b989-7a12887ef6a5"),
+                            Name = "Medium"
+                        },
+                        new
+                        {
+                            Id = new Guid("7669e5b8-2fcf-40fb-a9ed-30651286ec60"),
+                            Name = "Hard"
+                        });
                 });
 
             modelBuilder.Entity("BharatWTAPI.Models.Domain.Region", b =>
