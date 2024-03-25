@@ -43,5 +43,27 @@ namespace BharatWTAPI.Controllers
 
             return BadRequest("Error");
         }
+
+
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login(LoginRequestDTO model)
+        {
+            var user = await userManager.FindByEmailAsync(model.UserName);
+            if (user != null)
+            {
+                var isVaLID = await userManager.CheckPasswordAsync(user, model.Password);
+                if (isVaLID)
+                {
+                    //Create Token Here
+                    return Ok("Found");
+                }
+
+
+            }
+            return BadRequest("Not Found");
+        }
+
+
     }
 }
