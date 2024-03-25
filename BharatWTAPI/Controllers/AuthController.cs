@@ -15,7 +15,7 @@ namespace BharatWTAPI.Controllers
             this.userManager = userManager;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register(RegisterRequestDTO model)
         {
